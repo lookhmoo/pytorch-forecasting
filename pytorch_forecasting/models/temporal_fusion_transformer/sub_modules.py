@@ -7,7 +7,7 @@ from typing import Dict, List, Tuple, Union
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import numpy as np
 
 class TimeDistributed(nn.Module):
     def __init__(self, module: nn.Module, batch_first: bool = False):
@@ -390,7 +390,7 @@ class ScaledDotProductAttention(nn.Module):
             attn = attn / dimension
 
         if mask is not None:
-            attn = attn.masked_fill(mask, - math.inf)
+            attn = attn.masked_fill(mask, -np.inf)
         attn = self.softmax(attn)
 
         if self.dropout is not None:
