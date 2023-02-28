@@ -40,7 +40,7 @@ class TimeDistributedInterpolation(nn.Module):
         self.batch_first = batch_first
         self.trainable = trainable
         if self.trainable:
-            self.mask = nn.Parameter(torch.zeros(self.output_size, dtype=torch.float32))
+            self.mask = nn.Parameter(torch.zeros(self.output_size, dtype=torch.float16))
             self.gate = nn.Sigmoid()
 
     def interpolate(self, x):
